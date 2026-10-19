@@ -1,0 +1,48 @@
+---
+import { nav, site, whatsappUrl } from '../config/site';
+---
+
+<footer class="border-t border-line bg-panel">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3">
+    <div>
+      <a href="/" class="flex items-center gap-3 text-paper no-underline">
+        <img src="/assets/icon.png" alt="" class="h-12 w-12 rounded-2xl" width="48" height="48" />
+        <span class="leading-[1.05]">
+          <span class="font-display block text-xl font-extrabold">Cámaras</span>
+          <span class="block text-xs font-medium text-mist">
+            de Seguridad <span class="font-bold text-signal">NAYARIT</span>
+          </span>
+        </span>
+      </a>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-mist">
+        {site.tagline} Instalamos y reparamos a domicilio en Tepic, Xalisco y Compostela. No hay sucursal de mostrador.
+      </p>
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-hud">Servicios</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {nav.map((item) => (
+          <li><a class="text-mist hover:text-paper" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-hud">Contacto</p>
+      <ul class="mt-4 space-y-2 text-sm text-mist">
+        <li>Tepic, Nayarit · servicio a domicilio</li>
+        <li>
+          <a href={`tel:${site.telephone}`}>{site.telephoneDisplay}</a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+        <li>
+          <a class="text-signal" href={whatsappUrl()}>WhatsApp {site.telephoneDisplay}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-line py-4 text-center text-xs text-mist">
+    © {new Date().getFullYear()} {site.name}. Instalación profesional. Soporte que responde.
+  </div>
+</footer>

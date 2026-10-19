@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { faqNode } from '../../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Cobertura', path: '/cobertura' },
+];
+
+const faqs = [
+  {
+    question: '¿En qué ciudades de Nayarit instalan y reparan cámaras de seguridad?',
+    answer:
+      'Cámaras de Seguridad Nayarit trabaja a domicilio en Tepic (base), Xalisco (Puerta del Sol, Centro, Fraccionamiento Canoas) y Compostela (Zona Centro y alrededores). No hay sucursal de mostrador: el técnico va a tu casa, local o coto.',
+  },
+  {
+    question: '¿Cobran viáticos por ir a Xalisco o Compostela?',
+    answer:
+      'No cobramos el traslado como si fueras a otra ciudad. Xalisco y Compostela entran en la misma zona de servicio que Tepic. La garantía va por escrito en los tres municipios.',
+  },
+  {
+    question: '¿Tienen horario el domingo?',
+    answer:
+      'Atendemos de lunes a sábado, de 8:00 a 20:00. El domingo no hay visita programada; si es urgente, escríbenos por WhatsApp y te decimos el primer hueco del lunes.',
+  },
+];
+
+const ciudades = [
+  {
+    href: '/instalacion-camaras-seguridad-tepic',
+    title: 'Tepic',
+    text: 'Base local. Instalación, mantenimiento y redes en la ciudad y zona conurbada.',
+  },
+  {
+    href: '/cobertura/camaras-de-seguridad-xalisco',
+    title: 'Xalisco',
+    text: 'Puerta del Sol, Centro de Xalisco y Fraccionamiento Canoas. Sin viáticos excesivos desde Tepic.',
+  },
+  {
+    href: '/cobertura/camaras-de-seguridad-compostela',
+    title: 'Compostela',
+    text: 'Zona Centro y alrededores. Instalación CCTV, mantenimiento de DVR y garantía por escrito.',
+  },
+];
+---
+
+<BaseLayout
+  title="Cobertura de cámaras de seguridad en Tepic, Xalisco y Compostela"
+  description="Servicio técnico de CCTV a domicilio en Tepic y zona conurbada, Xalisco y Compostela. Instalación, mantenimiento y reconfiguración de red con soporte local."
+  path="/cobertura"
+  breadcrumbs={breadcrumbs}
+  schema={[faqNode(faqs)]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-hud">Nayarit</p>
+    <h1 class="font-display mt-3 text-4xl font-bold sm:text-5xl">Vamos a Tepic, Xalisco y Compostela</h1>
+    <p class="mt-4 text-lg text-mist">
+      Base en Tepic. En los municipios vecinos no te cobramos el traslado como si fueras a otra ciudad, y la garantía va por escrito. El técnico llega a tu domicilio: no hay sucursal de mostrador.
+    </p>
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {
+        ciudades.map((ciudad) => (
+          <a href={ciudad.href} class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <h2 class="font-display text-2xl font-bold">{ciudad.title}</h2>
+            <p class="mt-3 text-sm text-mist">{ciudad.text}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+  <Faq items={faqs} />
+  <CtaBanner
+    title="Dinos de qué municipio eres"
+    text="Tepic, Xalisco o Compostela. Coordinamos horario por WhatsApp y vamos a tu casa o local."
+    message="Hola, quiero servicio de cámaras de seguridad a domicilio en Nayarit."
+  />
+</BaseLayout>

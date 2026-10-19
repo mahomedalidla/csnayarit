@@ -1,0 +1,77 @@
+---
+import { nav, site, whatsappUrl } from '../config/site';
+import Logo from './Logo.astro';
+---
+
+<header class="sticky top-0 z-40 border-b border-line/80 bg-ink/90 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex min-w-0 items-center gap-3 text-paper no-underline">
+      <span class="logo-float inline-flex">
+        <Logo alt="" />
+      </span>
+      <span class="leading-[1.05]">
+        <span class="font-display block text-lg font-extrabold sm:text-xl">Cámaras</span>
+        <span class="block text-[11px] font-medium text-mist sm:text-xs">
+          de Seguridad <span class="font-bold tracking-wide text-signal">NAYARIT</span>
+        </span>
+      </span>
+    </a>
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Principal">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-mist transition hover:text-signal"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a
+      href={whatsappUrl()}
+      class="hidden glow-signal rounded-full bg-signal px-4 py-2 text-sm font-semibold text-ink transition hover:bg-signal-dark lg:inline-flex"
+    >
+      Cotiza por WhatsApp
+    </a>
+    <button
+      id="menu-toggle"
+      type="button"
+      class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-signal/70 text-signal lg:hidden"
+      aria-expanded="false"
+      aria-controls="menu-movil"
+    >
+      <span class="sr-only">Abrir menú</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+  <nav
+    id="menu-movil"
+    class="hidden border-t border-line bg-panel px-4 py-4 lg:hidden"
+    aria-label="Móvil"
+  >
+    <div class="flex flex-col gap-3">
+      {
+        nav.map((item) => (
+          <a href={item.href} class="text-base text-paper">
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={whatsappUrl()} class="rounded-full bg-signal px-4 py-2 text-center font-semibold text-ink">
+        Cotiza por WhatsApp · {site.telephoneDisplay}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu-movil');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

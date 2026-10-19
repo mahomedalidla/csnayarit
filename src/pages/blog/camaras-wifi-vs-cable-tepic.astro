@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideCta from '../../components/GuideCta.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import { articleNode, faqNode } from '../../config/site';
+
+const path = '/blog/camaras-wifi-vs-cable-tepic';
+const wa =
+  'Hola, quiero cotizar cámaras con cable en Tepic. Te mando fotos de la fachada y el patio.';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/blog' },
+  { name: 'Wi-Fi vs cable', path },
+];
+
+const faqs = [
+  {
+    question: '¿En Tepic conviene instalar cámaras Wi-Fi o con cable?',
+    answer:
+      'Para cuidar casa o negocio recomendamos cable (CCTV/PoE). El Wi-Fi se satura, se desconfigura al cambiar el módem y un bloqueador barato puede tumbarlo. Cotizamos la instalación a domicilio por WhatsApp: te decimos cuántos puntos y qué incluye, sin mensualidad de nube.',
+  },
+  {
+    question: '¿Las cámaras Wi-Fi nunca sirven?',
+    answer:
+      'Sirven para un punto temporal. Para perímetro, cochera, local o coto en Tepic, Xalisco o Compostela, el cable es lo que sigue grabando cuando se cae el internet de la colonia. Mándanos fotos y te decimos si se puede por canaleta o hay que pasar tubería.',
+  },
+];
+---
+
+<BaseLayout
+  title="Cámaras Wi-Fi vs cable en Tepic: cotiza la que sí dura"
+  description="Cámaras Wi-Fi o cableadas en Tepic. Por qué el kit inalámbrico se cae y cómo cotizamos un sistema PoE/CCTV a domicilio, sin mensualidad de nube."
+  path={path}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    articleNode({
+      headline: 'Cámaras Wi-Fi o con cable en Tepic: cotiza la que sí conviene',
+      description:
+        'Comparación y cotización a domicilio de cámaras cableadas PoE/CCTV en Tepic, Xalisco y Compostela.',
+      path,
+      datePublished: '2026-10-19',
+    }),
+    faqNode(faqs),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Cotización · Tepic</p>
+    <h1 class="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+      Cámaras Wi-Fi o con cable en Tepic: cuál sí conviene
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-mist">
+      El kit Wi-Fi se ve fácil el primer mes. Luego llega la familia, el vecino o un cambio de compañía… y la app se queda en negro. Si lo que quieres es que sigan grabando, el trabajo es pasar cable, dejar grabador y app. Eso se cotiza y se instala. No es un tutorial para armar el kit de Mercado Libre.
+    </p>
+
+    <GuideCta
+      text="Mándanos fotos de fachada, patio y dónde está el módem. Te decimos cuántas cámaras ocupas y cuánto sale instalarlas con cable."
+      message={wa}
+      label="Cotizar instalación"
+    />
+
+    <h2 class="font-display mt-12 text-3xl font-bold">La diferencia, en simple</h2>
+    <p class="mt-4 leading-relaxed text-mist">
+      Una cámara Wi-Fi pelea la misma señal que el celular, la tele y el punto de venta. Una cámara con cable lleva imagen y corriente por un solo hilo (PoE Cat6) hasta el grabador. El video se guarda en disco duro en tu casa. Tú lo ves en el celular, sin pagar nube cada mes.
+    </p>
+    <p class="mt-4 leading-relaxed text-mist">
+      Si ya te pasó al cambiar de Telmex, Megacable o Totalplay, no es que se hayan descompuesto:
+      {' '}
+      <a class="text-signal hover:underline" href="/blog/como-solucionar-camaras-desconfiguradas-cambio-modem">
+        es la red la que se movió
+      </a>
+      — y eso también lo reparamos a domicilio.
+    </p>
+  </article>
+
+  <ComparisonTable />
+
+  <div class="mx-auto max-w-3xl px-4">
+    <GuideCta
+      text="Si ya tienes kit Wi-Fi y se te cae, te decimos si se rescata o conviene pasar a cable. La cotización va por WhatsApp, antes de agendar."
+      message={wa}
+      label="Pedir cotización"
+    />
+  </div>
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+  <Faq items={faqs} />
+
+  <CtaBanner
+    title="El kit barato se ve bien el día que lo pegas. El nuestro sigue grabando."
+    text="Instalación cableada en Tepic, Xalisco y Compostela. Fotos por WhatsApp, precio claro, garantía por escrito."
+    label="Cotizar por WhatsApp"
+    message={wa}
+  />
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExplodedHero from '../components/ExplodedHero.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import GeoAnswer from '../components/GeoAnswer.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqNode, homeFaqs, services, site } from '../config/site';
+
+const geo = homeFaqs[0];
+---
+
+<BaseLayout
+  title="Cámaras de Seguridad en Tepic que se ven en el celular | Nayarit"
+  description="Instalación y reparación de cámaras de seguridad en Tepic. Sistemas cableados que se ven en el celular, sin mensualidades, más Wi-Fi sin zonas muertas en Xalisco y Compostela."
+  path="/"
+  breadcrumbs={[{ name: 'Inicio', path: '/' }]}
+  schema={[faqNode(homeFaqs)]}
+>
+  <ExplodedHero />
+
+  <ComparisonTable />
+
+  <GeoAnswer question={geo.question} answer={geo.answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">En qué te podemos ayudar</h2>
+    <p class="mt-4 max-w-2xl text-mist">
+      Instalamos de cero, rescatamos equipos que otro dejó tirados y arreglamos el internet de la casa o el local.
+    </p>
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      {
+        services.map((service) => (
+          <a href={service.href} class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <h3 class="font-display text-2xl font-bold">{service.name}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-mist">{service.summary}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <Faq items={homeFaqs} />
+
+  <CtaBanner
+    title={`Un técnico de ${site.name} en tu domicilio`}
+    text="Mándanos un WhatsApp: instalación nueva, cámaras que se desconectaron o un Wi-Fi que no llega al patio."
+  />
+</BaseLayout>

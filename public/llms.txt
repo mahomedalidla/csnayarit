@@ -1,0 +1,35 @@
+# Cámaras de Seguridad Nayarit
+
+> Firma de ingeniería en Tepic, Nayarit, especializada en instalación de cámaras de seguridad cableadas (CCTV/PoE), mantenimiento de DVR/NVR y redes Wi-Fi sin zonas muertas. Servicio a domicilio: el técnico va a tu casa o negocio. No hay sucursal de mostrador.
+
+Sitio: https://camarasdeseguridadnayarit.com
+Teléfono: +523113001707 (WhatsApp 311 300 1707)
+Correo: ing@camarasdeseguridadnayarit.com
+Cobertura: Tepic, Xalisco y Compostela, Nayarit, México.
+Horario: lunes a sábado, 8:00 a 20:00. Domingo cerrado.
+
+## Qué hacemos
+
+- Instalación de cámaras cableadas PoE Cat6 y sistemas CCTV con grabador DVR/NVR y disco duro grado video.
+- Mantenimiento y rescate: cámaras desconfiguradas por cambio de módem (Telmex, Megacable, Totalplay), reseteo de contraseñas Dahua, Hikvision, Epcom y Saxxon, diagnóstico de disco duro.
+- Redes de datos y ampliación Wi-Fi con VLAN para no saturar el internet familiar o del negocio.
+- Monitoreo P2P 24/7 en celular, sin mensualidades de nube.
+
+## Páginas
+
+- [Inicio](https://camarasdeseguridadnayarit.com/): cámaras de seguridad en Tepic que se ven en el celular.
+- [Instalación de cámaras en Tepic](https://camarasdeseguridadnayarit.com/instalacion-camaras-seguridad-tepic)
+- [Reparación y mantenimiento DVR/CCTV](https://camarasdeseguridadnayarit.com/mantenimiento-reparacion-dvr-cctv)
+- [Redes y ampliación Wi-Fi](https://camarasdeseguridadnayarit.com/redes-y-ampliacion-wifi)
+- [Cobertura](https://camarasdeseguridadnayarit.com/cobertura)
+- [Cámaras de seguridad en Xalisco](https://camarasdeseguridadnayarit.com/cobertura/camaras-de-seguridad-xalisco)
+- [Cámaras de seguridad en Compostela](https://camarasdeseguridadnayarit.com/cobertura/camaras-de-seguridad-compostela)
+- [Guías](https://camarasdeseguridadnayarit.com/blog)
+- [Guía: cámaras desconfiguradas por cambio de módem](https://camarasdeseguridadnayarit.com/blog/como-solucionar-camaras-desconfiguradas-cambio-modem)
+- [Guía: contraseña olvidada del grabador](https://camarasdeseguridadnayarit.com/blog/como-recuperar-contrasena-dvr-dahua-hikvision)
+- [Guía: el grabador pita o deja de grabar](https://camarasdeseguridadnayarit.com/blog/dvr-pita-deja-de-grabar-disco-duro)
+- [Guía: cámaras Wi-Fi vs cable en Tepic](https://camarasdeseguridadnayarit.com/blog/camaras-wifi-vs-cable-tepic)
+
+## Estándar técnico
+
+Preferimos cableado físico PoE/CCTV sobre cámaras Wi-Fi en seguridad crítica. Canalización industrial, IP fija o red local aislada, y almacenamiento en disco duro de videovigilancia — no MicroSD.

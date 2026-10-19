@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { guides } from '../../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/blog' },
+];
+---
+
+<BaseLayout
+  title="Guías de cámaras de seguridad en Tepic | Blog"
+  description="Qué hacer si tus cámaras dejaron de verse en el celular, se olvidó la contraseña del DVR o el grabador pita. Guías claras para dueños de casa y negocio en Nayarit."
+  path="/blog"
+  breadcrumbs={breadcrumbs}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Para dueños, no para técnicos</p>
+    <h1 class="font-display mt-3 text-4xl font-bold sm:text-5xl">Guías cuando las cámaras dejan de verse</h1>
+    <p class="mt-4 text-mist">
+      Te explicamos qué está pasando, en español. El arreglo lo hacemos en tu casa o local: se cotiza por WhatsApp y se cobra la visita.
+    </p>
+    <div class="mt-10 grid gap-5">
+      {
+        guides.map((guide) => (
+          <article class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <p class="text-xs uppercase tracking-wider text-signal">{guide.tag}</p>
+            <h2 class="font-display mt-2 text-2xl font-bold">
+              <a href={guide.href} class="hover:text-signal">
+                {guide.title}
+              </a>
+            </h2>
+            <p class="mt-3 text-sm text-mist">{guide.summary}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+  <CtaBanner
+    title="¿Ya no se ven, pita el grabador o se te olvidó la clave?"
+    text="Mándanos un WhatsApp con una foto de lo que ves en la pantalla. Vamos a Tepic, Xalisco o Compostela y te cotizamos antes de tocar nada."
+    message="Hola, tengo un problema con las cámaras y quiero visita técnica en Nayarit."
+  />
+</BaseLayout>

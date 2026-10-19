@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Página no encontrada | Cámaras de Seguridad Nayarit"
+  description="La página no existe. Vuelve al inicio para instalación y mantenimiento de cámaras de seguridad en Tepic."
+  path="/404"
+  noindex={true}
+>
+  <section class="mx-auto max-w-3xl px-4 py-24 text-center">
+    <p class="text-xs uppercase tracking-[0.28em] text-hud">Señal perdida</p>
+    <h1 class="font-display mt-4 text-5xl font-bold">404</h1>
+    <p class="mt-4 text-mist">Esa ruta no está en el mapa de cobertura.</p>
+    <a href="/" class="mt-8 inline-flex rounded-full bg-signal px-6 py-3 font-semibold text-ink">Volver al inicio</a>
+  </section>
+</BaseLayout>

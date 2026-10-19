@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { faqNode, organizationId, site } from '../../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Cobertura', path: '/cobertura' },
+  { name: 'Compostela', path: '/cobertura/camaras-de-seguridad-compostela' },
+];
+
+const faqs = [
+  {
+    question: '¿Hay instalación y reparación de cámaras de seguridad en Compostela, Nayarit?',
+    answer:
+      'Sí. Cámaras de Seguridad Nayarit instala y repara cámaras en Compostela (Zona Centro y alrededores): sistemas nuevos, grabadores que dejaron de verse al cambiar el módem, y garantía por escrito. No cobramos el traslado como si fueras a otra ciudad.',
+  },
+  {
+    question: '¿Tardan más en llegar a Compostela que a Tepic?',
+    answer:
+      'El traslado es corto y no lo cobramos como viaje a otra ciudad. Coordinamos horario de lunes a sábado por WhatsApp. El técnico va a tu domicilio; no hay sucursal de mostrador.',
+  },
+  {
+    question: '¿Sirve si ya tengo cámaras y se desconectaron al cambiar el módem?',
+    answer:
+      'Sí. En Compostela también reconfiguramos DVR/NVR y la app del celular. Casi siempre se resuelve el mismo día, sin cambiar todo el sistema.',
+  },
+];
+
+const zonas = ['Zona Centro de Compostela', 'Accesos carreteros', 'Comercios del centro', 'Vivienda y ranchos cercanos'];
+---
+
+<BaseLayout
+  title="Instalación y Reparación de Cámaras de Seguridad en Compostela"
+  description="Cámaras de seguridad en Compostela, Nayarit: instalación CCTV, reparación de DVR y soporte local en Zona Centro. Sin viáticos excesivos desde Tepic."
+  path="/cobertura/camaras-de-seguridad-compostela"
+  breadcrumbs={breadcrumbs}
+  schema={[
+    faqNode(faqs),
+    {
+      '@type': 'Service',
+      name: 'Cámaras de seguridad en Compostela',
+      provider: { '@id': organizationId },
+      areaServed: { '@type': 'City', name: 'Compostela' },
+      url: `${site.url}/cobertura/camaras-de-seguridad-compostela`,
+    },
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Cobertura local · Compostela, Nayarit"
+    heading="Instalación y reparación de cámaras de seguridad en Compostela"
+    lead="No cobramos viáticos excesivos por ir desde Tepic. Instalamos, reparamos y te dejamos garantía por escrito."
+    secondary="Comercios, casas y perímetro en Zona Centro y alrededores. Las ves en el celular, sin mensualidad."
+    secondaryCta={{ href: '/cobertura/camaras-de-seguridad-xalisco', label: 'También en Xalisco' }}
+  />
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold">Zonas de cobertura real en Compostela</h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        zonas.map((zona) => (
+          <li class="rounded-xl border border-line bg-panel px-5 py-4 text-paper">{zona}</li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaBanner
+    title="Visita técnica en Compostela"
+    text="Instalación, mantenimiento o cámaras que se cayeron al cambiar el módem."
+    message="Hola, necesito cámaras de seguridad en Compostela."
+  />
+</BaseLayout>

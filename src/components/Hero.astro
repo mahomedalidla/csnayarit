@@ -1,0 +1,66 @@
+---
+import { site, whatsappUrl } from '../config/site';
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  lead: string;
+  secondary?: string;
+  primaryCta?: { href?: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  split?: boolean;
+}
+
+const {
+  eyebrow = 'Instalación y soporte · Tepic, Nayarit',
+  heading,
+  lead,
+  secondary,
+  primaryCta = { label: `Cotiza por WhatsApp · ${site.telephoneDisplay}` },
+  secondaryCta,
+  split = false,
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden brand-glow">
+  <div
+    class:list={[
+      'relative mx-auto max-w-6xl items-center gap-6 px-4 py-14 sm:py-20',
+      split ? 'grid lg:grid-cols-2' : '',
+    ]}
+  >
+    {
+      split && (
+        <div class="order-1 lg:order-2">
+          <slot name="visual" />
+        </div>
+      )
+    }
+    <div class:list={['order-2 lg:order-1', split ? '' : 'max-w-4xl']}>
+      <p class="text-xs font-semibold uppercase tracking-[0.22em] text-signal">{eyebrow}</p>
+      <h1 class="font-display mt-4 text-4xl font-extrabold leading-[1.08] text-paper sm:text-5xl lg:text-6xl">
+        {heading}
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-mist sm:text-xl">{lead}</p>
+      {secondary && <p class="mt-3 max-w-xl text-base text-mist">{secondary}</p>}
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href={primaryCta.href ?? whatsappUrl()}
+          class="cta-pulse glow-signal inline-flex items-center justify-center rounded-full bg-signal px-6 py-3 text-center text-base font-semibold text-ink hover:bg-signal-dark"
+        >
+          {primaryCta.label}
+        </a>
+        {
+          secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class="inline-flex items-center justify-center rounded-full border border-line px-6 py-3 text-center text-base font-semibold text-paper transition hover:border-signal hover:text-signal"
+            >
+              {secondaryCta.label}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

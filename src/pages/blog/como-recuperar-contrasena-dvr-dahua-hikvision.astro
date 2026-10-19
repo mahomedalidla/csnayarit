@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideCta from '../../components/GuideCta.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleNode, faqNode } from '../../config/site';
+
+const path = '/blog/como-recuperar-contrasena-dvr-dahua-hikvision';
+const wa =
+  'Hola, se me olvidó la contraseña del grabador de cámaras y no quiero borrar el video. ¿Pueden venir a desbloquearlo?';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/blog' },
+  { name: 'Contraseña del grabador', path },
+];
+
+const faqs = [
+  {
+    question: '¿Se puede recuperar la contraseña de un DVR o NVR en Tepic sin borrar el video?',
+    answer:
+      'En la mayoría de los casos sí. Cámaras de Seguridad Nayarit desbloquea grabadores Dahua, Hikvision, Epcom y Saxxon a domicilio. Si el disco está sano, conservamos las grabaciones. El servicio se cotiza por WhatsApp antes de tocar el aparato.',
+  },
+  {
+    question: '¿Sirve resetear el grabador con el botón de fábrica?',
+    answer:
+      'Casi nunca. Ese botón suele borrar red y, a veces, el video. No lo oprima. Mándanos una foto de la marca y vamos a desbloquearlo con el procedimiento que sí aplica a tu equipo.',
+  },
+];
+
+const pasos = [
+  {
+    name: 'Mira la marca, no el menú',
+    text: 'En la parte de atrás o abajo suele decir Dahua, Hikvision, Epcom o Saxxon. Con una foto de esa etiqueta ya sabemos qué equipo es. No hace falta que entres al menú ni que adivines claves.',
+  },
+  {
+    name: 'No adivines ni restaures de fábrica',
+    text: 'Varios equipos se bloquean si fallas muchas veces. Restaurar de fábrica puede borrar días o meses de grabación: justo lo que a veces más necesitas (un faltante, un incidente).',
+  },
+  {
+    name: 'WhatsApp con la foto del aparato',
+    text: 'Foto de la etiqueta y, si puedes, de lo que pide la app. Te decimos si se desbloquea el mismo día, si hay riesgo de perder video y cuánto sale la visita. Sin sorpresa al llegar.',
+  },
+  {
+    name: 'Desbloqueo a domicilio, se cobra el servicio',
+    text: 'Vamos a Tepic, Xalisco o Compostela. Cuando el disco lo permite, dejamos las grabaciones y te entregamos la nueva clave anotada. Pagas el desbloqueo, no un sistema nuevo.',
+  },
+];
+---
+
+<BaseLayout
+  title="Contraseña olvidada del DVR en Tepic: desbloqueo a domicilio"
+  description="Se te olvidó la contraseña del grabador de cámaras en Tepic. No resetee a ciegas: te explicamos el riesgo y vamos a desbloquear Dahua, Hikvision, Epcom o Saxxon."
+  path={path}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    articleNode({
+      headline: 'Se te olvidó la contraseña del grabador: te lo desbloqueamos en Tepic',
+      description:
+        'Desbloqueo a domicilio de DVR/NVR Dahua, Hikvision, Epcom y Saxxon en Nayarit, sin borrar video cuando el disco lo permite.',
+      path,
+      datePublished: '2026-10-19',
+    }),
+    faqNode(faqs),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Visita técnica · Tepic</p>
+    <h1 class="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+      Se te olvidó la contraseña del grabador de cámaras en Tepic
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-mist">
+      La app pide administrador y nadie en la casa o el local lo recuerda. El equipo casi nunca está muerto: está cerrado. Abrirlo mal puede borrar el video. Por eso lo hacemos nosotros y se cobra como visita.
+    </p>
+
+    <GuideCta
+      text="Mándanos una foto de la etiqueta del grabador. Te cotizamos el desbloqueo y te decimos si se salva lo grabado, antes de ir."
+      message={wa}
+      label="Pedir desbloqueo"
+    />
+
+    <h2 class="font-display mt-12 text-3xl font-bold">Qué pasó, en simple</h2>
+    <p class="mt-4 leading-relaxed text-mist">
+      El grabador (DVR/NVR) tiene una clave de dueño distinta a la del Wi-Fi. Si se fue quien instaló o nunca se anotó, el celular deja de abrir las cámaras aunque sigan grabando adentro. No es un tutorial para abrir el aparato a la fuerza: es para no perder lo que ya está guardado.
+    </p>
+
+    <ol class="mt-10 space-y-8">
+      {
+        pasos.map((paso, index) => (
+          <li class="rounded-2xl border border-line bg-panel p-6">
+            <p class="text-xs uppercase tracking-wider text-hud">Paso {index + 1}</p>
+            <h2 class="font-display mt-2 text-2xl font-bold">{paso.name}</h2>
+            <p class="mt-3 leading-relaxed text-mist">{paso.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </article>
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+  <Faq items={faqs} />
+
+  <CtaBanner
+    title="El menú está bloqueado. Nosotros lo abrimos."
+    text="Desbloqueo a domicilio en Tepic, Xalisco y Compostela. Te decimos de antemano si hay riesgo de perder grabaciones."
+    label="WhatsApp para desbloquear"
+    message={wa}
+  />
+</BaseLayout>

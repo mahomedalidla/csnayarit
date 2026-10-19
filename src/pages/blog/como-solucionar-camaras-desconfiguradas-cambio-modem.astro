@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideCta from '../../components/GuideCta.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleNode, faqNode } from '../../config/site';
+
+const path = '/blog/como-solucionar-camaras-desconfiguradas-cambio-modem';
+const wa =
+  'Hola, cambié de módem y mis cámaras se desconfiguraron. Necesito que vengan a reconectar el grabador al celular.';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/blog' },
+  { name: 'Cámaras desconfiguradas por cambio de módem', path },
+];
+
+const faqs = [
+  {
+    question: '¿Por qué dejaron de verse las cámaras al cambiar el módem?',
+    answer:
+      'El módem nuevo de Telmex, Megacable o Totalplay cambió la dirección de la red. El grabador (DVR/NVR) se quedó hablando con el internet viejo. Las cámaras casi nunca se descompusieron: hay que reconfigurar el aparato. En Tepic, Xalisco y Compostela lo hacemos a domicilio y te cotizamos por WhatsApp antes de ir.',
+  },
+  {
+    question: '¿Puedo reconectar yo el DVR después de cambiar de internet?',
+    answer:
+      'Si el menú está en chino, pide una clave que no recuerdas o mezclaste cámaras Wi-Fi, un clic de más puede borrar video o dejarlo peor. Por eso no publicamos el procedimiento completo: vamos, lo dejamos viéndose en el celular y se cobra como visita técnica.',
+  },
+];
+
+const pasos = [
+  {
+    name: 'Confirma que cambiaste de internet',
+    text: 'Pasaste de Telmex, Megacable o Totalplay, o te cambiaron el módem en casa. La app se quedó en negro o pide iniciar sesión otra vez. Eso cuadra con una desconfiguración de red, no con cámaras “muertas”.',
+  },
+  {
+    name: 'No toques el menú del grabador',
+        text: 'No restaures de fábrica, no adivines la contraseña y no formatees el disco “por si acaso”. Ahí es donde se pierde el video. El aparato puede seguir grabando en la casa aunque el celular no lo vea.',
+  },
+  {
+    name: 'Mándanos una foto por WhatsApp',
+    text: 'Foto de la parte de atrás del grabador (marca: Dahua, Hikvision, Epcom, Saxxon) y una captura de lo que muestra la app. Con eso te decimos si se reconfigura el mismo día y cuánto sale la visita.',
+  },
+  {
+    name: 'Vamos y lo dejamos en el celular',
+    text: 'En Tepic, Xalisco y Compostela reconectamos DVR/NVR y P2P en tu domicilio. En la mayoría de los casos es menos de media hora. Pagas el servicio; no un kit nuevo si el equipo todavía sirve.',
+  },
+];
+
+const howTo = {
+  '@type': 'HowTo',
+  name: 'Qué hacer si las cámaras se desconectaron al cambiar de módem en Tepic',
+  description:
+    'El módem nuevo cambió la red. No toques el grabador: manda una foto por WhatsApp y un técnico reconecta DVR/NVR y P2P a domicilio.',
+  inLanguage: 'es-MX',
+  step: pasos.map((paso, index) => ({
+    '@type': 'HowToStep',
+    position: index + 1,
+    name: paso.name,
+    text: paso.text,
+  })),
+};
+---
+
+<BaseLayout
+  title="Cámaras desconfiguradas por cambio de módem en Tepic: lo reconectamos"
+  description="Cambiaste de Telmex, Megacable o Totalplay y ya no ves las cámaras. Te explicamos por qué pasa y vamos a reconectar el grabador a domicilio en Tepic."
+  path={path}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    articleNode({
+      headline: 'Cámaras desconfiguradas por cambio de módem: las volvemos a ver en el celular',
+      description:
+        'El módem nuevo cambió la red. Visita técnica en Tepic, Xalisco y Compostela para reconectar DVR/NVR y P2P.',
+      path,
+      datePublished: '2026-04-10',
+      dateModified: '2026-10-19',
+    }),
+    howTo,
+    faqNode(faqs),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Visita técnica · Tepic</p>
+    <h1 class="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+      Cómo volver a ver tus cámaras en el celular después de cambiar el módem
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-mist">
+      Cambiaste de Telmex, Megacable o Totalplay y la app se quedó en negro. Las cámaras casi nunca se descompusieron: el módem nuevo cambió la red y el grabador se quedó hablando solo. Eso se reconfigura en casa. Se cobra la visita.
+    </p>
+
+    <GuideCta
+      text="Mándanos WhatsApp con una foto del grabador. Te decimos si se resuelve el mismo día y cuánto sale, antes de ir."
+      message={wa}
+      label="Reconectar mis cámaras"
+    />
+
+    <h2 class="font-display mt-12 text-3xl font-bold">Qué pasó, en simple</h2>
+    <p class="mt-4 leading-relaxed text-mist">
+      El grabador tenía la dirección del internet viejo. El módem nuevo usa otra. Si tus cámaras van por cable, pueden seguir grabando en la casa, pero la app no las encuentra hasta que alguien entra al aparato y lo deja otra vez “en línea” (P2P). Ese menú suele estar en otro idioma o pedir una clave que ya nadie recuerda.
+    </p>
+    <p class="mt-4 leading-relaxed text-mist">
+      Por eso no dejamos aquí el procedimiento completo: un clic de más puede borrar video o dejar el sistema peor. Lo hacemos nosotros, te lo dejamos viéndose en el celular y te cotizamos claro.
+    </p>
+
+    <ol class="mt-10 space-y-8">
+      {
+        pasos.map((paso, index) => (
+          <li class="rounded-2xl border border-line bg-panel p-6">
+            <p class="text-xs uppercase tracking-wider text-hud">Paso {index + 1}</p>
+            <h2 class="font-display mt-2 text-2xl font-bold">{paso.name}</h2>
+            <p class="mt-3 leading-relaxed text-mist">{paso.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </article>
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+  <Faq items={faqs} />
+
+  <CtaBanner
+    title="Hoy se pueden volver a ver en el celular"
+    text="Visita técnica en Tepic, Xalisco o Compostela. Reconectamos el grabador, no te vendemos un sistema nuevo si el que tienes todavía sirve."
+    label="Pedir visita por WhatsApp"
+    message={wa}
+  />
+</BaseLayout>

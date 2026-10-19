@@ -1,0 +1,16 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<section class="border-y border-line bg-raised">
+  <div class="mx-auto max-w-4xl px-4 py-16">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">En corto</p>
+    <h2 class="font-display mt-4 text-3xl font-bold text-paper sm:text-4xl">{question}</h2>
+    <p class="mt-6 text-lg leading-relaxed text-mist">{answer}</p>
+  </div>
+</section>

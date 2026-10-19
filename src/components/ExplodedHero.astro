@@ -1,0 +1,53 @@
+---
+import { site, whatsappUrl } from '../config/site';
+---
+
+<section id="hero-ingenieria" class="relative h-[210vh] bg-ink md:h-[260vh]">
+  <div class="sticky top-16 isolate flex h-[calc(100svh-4rem)] flex-col overflow-hidden brand-glow">
+    <canvas id="hero-gl" class="pointer-events-none absolute inset-0 z-0 h-full w-full" aria-hidden="true"></canvas>
+    <div class="relative z-10 h-full w-full">
+      <div class="absolute inset-x-0 top-5 px-4 text-center sm:top-8">
+        <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-signal sm:text-xs">
+          Tepic · Xalisco · Compostela
+        </p>
+        <h1 class="font-display mx-auto mt-2 max-w-[20ch] text-balance text-[1.5rem] font-extrabold leading-[1.15] text-paper sm:max-w-4xl sm:text-5xl md:text-6xl">
+          Cámaras de seguridad en Tepic que se ven en el celular
+        </h1>
+      </div>
+
+      <div class="absolute inset-x-0 bottom-0 px-4 pb-6 sm:pb-7">
+        <p
+          data-explode-caption
+          class="mx-auto mb-3 min-h-[1.25rem] max-w-md text-center text-xs font-medium text-signal transition-opacity duration-500 sm:text-base"
+        >
+          Hardware de verdad, con cable de verdad. Baja para ver cómo está hecha.
+        </p>
+        <div class="mx-auto flex max-w-lg flex-col items-stretch justify-center gap-2 sm:max-w-none sm:flex-row sm:items-center sm:gap-3">
+          <a
+            href={whatsappUrl()}
+            class="cta-pulse glow-signal inline-flex items-center justify-center rounded-full bg-signal px-5 py-3 text-sm font-semibold text-ink hover:bg-signal-dark"
+          >
+            <span class="sm:hidden">Cotiza por WhatsApp</span>
+            <span class="hidden sm:inline">Cotiza por WhatsApp · {site.telephoneDisplay}</span>
+          </a>
+          <a
+            href="/mantenimiento-reparacion-dvr-cctv"
+            class="inline-flex items-center justify-center rounded-full border border-line px-5 py-3 text-sm font-semibold text-paper hover:border-signal hover:text-signal max-sm:pr-16 sm:px-6"
+          >
+            Ya no se ven
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById('hero-gl');
+  const section = document.getElementById('hero-ingenieria');
+  if (canvas instanceof HTMLCanvasElement && section instanceof HTMLElement) {
+    import('../scripts/camera-scene').then(({ initCameraScene }) => {
+      initCameraScene(canvas, section);
+    });
+  }
+</script>

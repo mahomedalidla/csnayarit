@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import GeoAnswer from '../components/GeoAnswer.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqNode, organizationId, site } from '../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Redes y Wi-Fi', path: '/redes-y-ampliacion-wifi' },
+];
+
+const faqs = [
+  {
+    question: '¿Quién instala y amplía el Wi-Fi en Tepic y Xalisco?',
+    answer:
+      'Cámaras de Seguridad Nayarit. Dejamos internet estable en casa, comercio o coto en Tepic, Xalisco y Compostela: sin zonas muertas, y las cámaras en su propia red para que no se te trabe el resto de dispositivos.',
+  },
+  {
+    question: '¿Las cámaras deben ir en el mismo Wi-Fi de la casa?',
+    answer:
+      'No. Si las cámaras, Netflix y el punto de venta pelean la misma red, todo se pone lento y la app se cae. Separamos la videovigilancia; el Wi-Fi queda para las personas.',
+  },
+];
+
+const puntos = [
+  {
+    title: 'Señal hasta el patio',
+    text: 'Medimos planta alta, cochera y bodega. Ponemos los puntos de acceso donde sí hacen falta, no un repetidor en el rincón.',
+  },
+  {
+    title: 'Cable donde conviene',
+    text: 'El “mesh” barato a veces solo copia el problema. Si hace falta, llevamos cable hasta el punto de acceso para que la señal nazca fuerte.',
+  },
+  {
+    title: 'Cámaras en su carril',
+    text: 'Tu familia navega; el grabador graba. No se mezclan, no se pelean y no se cae el celular a la hora de la comida.',
+  },
+];
+---
+
+<BaseLayout
+  title="Redes Wi-Fi y Ampliación de Cobertura en Tepic | Sin Zonas Muertas"
+  description="Wi-Fi sin zonas muertas en Tepic y Nayarit. Ampliamos la señal de casa o negocio y separamos las cámaras para que no se ponga lento el internet."
+  path="/redes-y-ampliacion-wifi"
+  breadcrumbs={breadcrumbs}
+  schema={[
+    faqNode(faqs),
+    {
+      '@type': 'Service',
+      name: 'Redes de datos y ampliación Wi-Fi en Nayarit',
+      provider: { '@id': organizationId },
+      areaServed: { '@type': 'State', name: 'Nayarit' },
+      url: `${site.url}/redes-y-ampliacion-wifi`,
+    },
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Casa y negocio · Tepic"
+    heading="Wi-Fi en toda la casa, sin zonas muertas"
+    lead="El módem de la compañía no aguanta 12 cámaras, 20 celulares y un piso de ventas. Medimos tu lugar y dejamos señal donde hoy no hay."
+    secondary="Patio, planta alta y bodega. Las cámaras van aparte para que Netflix y el punto de venta no se traben."
+  />
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">Cómo dejamos internet estable de verdad</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {
+        puntos.map((item) => (
+          <article class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <h3 class="font-display text-2xl font-bold">{item.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-mist">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <p class="mx-auto max-w-4xl px-4 pb-8 text-sm text-mist">
+    Si aún eliges entre kit inalámbrico o instalación cableada, lee
+    <a class="text-signal hover:underline" href="/blog/camaras-wifi-vs-cable-tepic">cámaras Wi-Fi vs cable en Tepic</a>.
+  </p>
+  <CtaBanner
+    title="Antes de venderte un repetidor, vemos tu casa"
+    text="Un repetidor barato a veces duplica el problema. Mándanos un video recorriendo el lugar por WhatsApp y te decimos qué sí ocupa."
+    message="Hola, necesito ampliar el Wi-Fi y separar la red de las cámaras en Tepic."
+  />
+</BaseLayout>

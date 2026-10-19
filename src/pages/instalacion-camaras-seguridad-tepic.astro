@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import GeoAnswer from '../components/GeoAnswer.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqNode, organizationId, site } from '../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Instalación en Tepic', path: '/instalacion-camaras-seguridad-tepic' },
+];
+
+const faqs = [
+  {
+    question: '¿Cuánto cuesta e incluye una instalación de cámaras de seguridad en Tepic?',
+    answer:
+      'Depende de cuántos puntos quieras ver y si es casa, local o coto. Un paquete completo trae cámaras con visión nocturna, grabador (DVR/NVR) con disco duro, cableado ordenado y la app en tu celular para ver 24/7, sin mensualidad de nube. Te cotizamos con fotos por WhatsApp.',
+  },
+  {
+    question: '¿Por qué no recomiendan cámaras solo Wi-Fi?',
+    answer:
+      'El Wi-Fi de la casa se satura y, al cambiar el módem, las cámaras suelen “perderse”. Un bloqueador barato también las puede tumbar. El cable (PoE/CCTV Cat6) lleva imagen y corriente; el video se guarda en el grabador y lo ves en el celular (P2P) sin pagar nube.',
+  },
+  {
+    question: '¿Instalan cámaras Dahua e Hikvision en Tepic?',
+    answer:
+      'Sí. Trabajamos Dahua, Hikvision y Epcom, dimensionadas a tu inmueble: comercio, casa, coto o Airbnb. Configuramos la app, el grabador y la red local para que no se desconecten al primer cambio de internet.',
+  },
+];
+
+const inmuebles = [
+  {
+    title: 'Comercio y empresa',
+    text: 'Monitoreo de cajas cobradoras, entradas de mercancía y pasillos con visión nocturna clara.',
+  },
+  {
+    title: 'Residencial y cotos',
+    text: 'Cobertura de cocheras, patios traseros y perímetros sin romper la estética de la fachada.',
+  },
+  {
+    title: 'Airbnb y rentas',
+    text: 'Control de acceso mediante chapas inteligentes y cámaras externas de monitoreo para huéspedes.',
+  },
+];
+---
+
+<BaseLayout
+  title="Instalación de Cámaras de Seguridad en Tepic | Sistemas Antifallas para Negocios y Hogares"
+  description="Instalación de cámaras de seguridad en Tepic para casa y negocio. Las ves en el celular, graban de noche y no se caen con el Wi-Fi. Sin mensualidades."
+  path="/instalacion-camaras-seguridad-tepic"
+  breadcrumbs={breadcrumbs}
+  schema={[
+    faqNode(faqs),
+    {
+      '@type': 'Service',
+      name: 'Instalación de cámaras de seguridad en Tepic',
+      serviceType: 'Instalación CCTV / PoE',
+      provider: { '@id': organizationId },
+      areaServed: { '@type': 'City', name: 'Tepic' },
+      url: `${site.url}/instalacion-camaras-seguridad-tepic`,
+    },
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Tepic · casa, negocio y coto"
+    heading="Instalación de cámaras de seguridad en Tepic que sí se ven en el celular"
+    lead="Siguen grabando aunque se caiga el Wi-Fi de la colonia. Visión nocturna, app en tu teléfono y sin pagar nube cada mes."
+    secondary="Vamos, vemos tu fachada y patio, y te decimos cuántas cámaras ocupas. Nada de kit genérico."
+    secondaryCta={{ href: '/mantenimiento-reparacion-dvr-cctv', label: '¿Ya tienes cámaras dañadas?' }}
+  />
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">Según el tipo de lugar</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {
+        inmuebles.map((item) => (
+          <article class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <h3 class="font-display text-2xl font-bold">{item.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-mist">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-raised">
+    <div class="mx-auto max-w-4xl px-4 py-16">
+      <h2 class="font-display text-3xl font-bold sm:text-4xl">¿Por qué no confiamos el Wi-Fi para cuidar tu casa?</h2>
+      <p class="mt-6 text-lg leading-relaxed text-mist">
+        Una cámara Wi-Fi barata pelea la señal con el celular, la tele y el vecino. Se traba, y cuando cambias de compañía de internet (Telmex, Megacable, Totalplay) casi siempre deja de verse. Hasta un bloqueador barato puede apagarla.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-mist">
+        Con cable, un solo hilo lleva imagen y corriente (PoE Cat6). El grabador guarda el video en disco duro las 24 horas y tú lo ves en el celular, sin mensualidad. Para un negocio o una casa en Tepic, esa es la opción que sí dura.
+      </p>
+      <p class="mt-4">
+        <a class="text-signal hover:underline" href="/blog/camaras-wifi-vs-cable-tepic">
+          Comparación clara: Wi-Fi vs cable en Tepic
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaBanner
+    title="Cotiza tu instalación en Tepic"
+    text="Mándanos fotos de la fachada, el patio o el piso de ventas por WhatsApp. Te decimos cuántas cámaras ocupas y qué incluye, claro."
+    message="Hola, quiero cotizar instalación de cámaras de seguridad en Tepic."
+  />
+</BaseLayout>

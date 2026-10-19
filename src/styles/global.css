@@ -1,0 +1,136 @@
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/800.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Poppins', 'Segoe UI', sans-serif;
+  --font-sans: 'Poppins', 'Segoe UI', sans-serif;
+  --color-ink: #081828;
+  --color-panel: #0c2033;
+  --color-raised: #10263c;
+  --color-line: #1c3a55;
+  --color-mist: #c8d0e0;
+  --color-paper: #f8f8f8;
+  --color-signal: #f09808;
+  --color-signal-dark: #d88807;
+  --color-hud: #f09808;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-signal) 45%, transparent);
+  color: white;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.brand-glow {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgb(240 152 8 / 0.18), transparent 60%),
+    var(--color-ink);
+}
+
+.glow-signal {
+  box-shadow: 0 0 0 1px rgb(240 152 8 / 0.35), 0 10px 36px rgb(240 152 8 / 0.28);
+}
+
+.wow-card {
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.wow-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-signal);
+  box-shadow: 0 18px 40px rgb(240 152 8 / 0.14);
+}
+
+.cta-pulse {
+  animation: cta-pulse 2.8s ease-in-out infinite;
+}
+
+.logo-float {
+  animation: logo-float 4.2s ease-in-out infinite;
+}
+
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(240 152 8 / 0.5), 0 10px 36px rgb(240 152 8 / 0.28);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgb(240 152 8 / 0), 0 10px 36px rgb(240 152 8 / 0.28);
+  }
+}
+
+@keyframes logo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.nayarit-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--color-signal);
+  padding: 0.12rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-ink);
+}
+
+details summary {
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::after {
+  float: right;
+  color: var(--color-signal);
+  content: '+';
+}
+
+details[open] summary::after {
+  content: '–';
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cta-pulse,
+  .logo-float {
+    animation: none;
+  }
+
+  .wow-card:hover {
+    transform: none;
+  }
+}

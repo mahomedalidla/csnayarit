@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { faqNode, organizationId, site } from '../../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Cobertura', path: '/cobertura' },
+  { name: 'Xalisco', path: '/cobertura/camaras-de-seguridad-xalisco' },
+];
+
+const faqs = [
+  {
+    question: '¿Instalan y reparan cámaras de seguridad en Xalisco, Nayarit?',
+    answer:
+      'Sí. Cámaras de Seguridad Nayarit brinda instalación, mantenimiento y reconfiguración de CCTV en Xalisco: Puerta del Sol, Centro de Xalisco, Fraccionamiento Canoas y zona conurbada con Tepic. No cobramos viáticos excesivos por trasladarnos desde Tepic. El soporte es local y las garantías van por escrito.',
+  },
+  {
+    question: '¿Van el mismo día a Xalisco?',
+    answer:
+      'Casi siempre, de lunes a sábado. Coordinamos por WhatsApp. Es servicio a domicilio: no hay sucursal; el técnico llega a tu casa, local o coto.',
+  },
+  {
+    question: '¿Las cámaras en Xalisco se ven en el celular sin pagar nube?',
+    answer:
+      'Sí. Configuramos el grabador (DVR/NVR) y la app (P2P). El video se guarda en el disco de tu casa, no en una mensualidad de la nube.',
+  },
+];
+
+const zonas = ['Puerta del Sol', 'Centro de Xalisco', 'Fraccionamiento Canoas', 'Zona conurbada Tepic–Xalisco'];
+---
+
+<BaseLayout
+  title="Instalación y Reparación de Cámaras de Seguridad en Xalisco"
+  description="Cámaras de seguridad en Xalisco: instalación CCTV, mantenimiento DVR y soporte local en Puerta del Sol, Centro y Fraccionamiento Canoas. Sin viáticos excesivos desde Tepic."
+  path="/cobertura/camaras-de-seguridad-xalisco"
+  breadcrumbs={breadcrumbs}
+  schema={[
+    faqNode(faqs),
+    {
+      '@type': 'Service',
+      name: 'Cámaras de seguridad en Xalisco',
+      provider: { '@id': organizationId },
+      areaServed: { '@type': 'City', name: 'Xalisco' },
+      url: `${site.url}/cobertura/camaras-de-seguridad-xalisco`,
+    },
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Cobertura local · Xalisco, Nayarit"
+    heading="Instalación y reparación de cámaras de seguridad en Xalisco"
+    lead="No cobramos viáticos excesivos por ir desde Tepic. Instalamos, reparamos y te dejamos garantía por escrito en tu municipio."
+    secondary="Casas, comercios y cotos en Puerta del Sol, Centro y Canoas. Las ves en el celular, sin mensualidad."
+    secondaryCta={{ href: '/cobertura/camaras-de-seguridad-compostela', label: 'También en Compostela' }}
+  />
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold">Zonas de cobertura real en Xalisco</h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        zonas.map((zona) => (
+          <li class="rounded-xl border border-line bg-panel px-5 py-4 text-paper">{zona}</li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaBanner
+    title="Visita técnica en Xalisco"
+    text="Instalación nueva o rescate de DVR. Coordinamos horario por WhatsApp."
+    message="Hola, necesito cámaras de seguridad en Xalisco."
+  />
+</BaseLayout>

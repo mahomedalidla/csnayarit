@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Cámaras de Seguridad Nayarit">
+  <rect width="64" height="64" rx="16" fill="#F09808"/>
+  <g transform="rotate(-18 33 30)">
+    <rect x="14" y="22" width="26" height="16" rx="8" fill="#081828"/>
+    <circle cx="42" cy="30" r="12" fill="#081828"/>
+    <circle cx="42" cy="30" r="7" fill="#F8F8F8"/>
+    <circle cx="42" cy="30" r="3.4" fill="#081828"/>
+    <circle cx="20" cy="30" r="2.6" fill="#F09808"/>
+    <rect x="28" y="36" width="5" height="12" rx="2.4" fill="#081828"/>
+    <rect x="21" y="46" width="19" height="5" rx="2.5" fill="#081828"/>
+  </g>
+</svg>

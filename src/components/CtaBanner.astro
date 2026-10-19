@@ -1,0 +1,25 @@
+---
+import { site, whatsappUrl } from '../config/site';
+
+interface Props {
+  title: string;
+  text: string;
+  label?: string;
+  message?: string;
+}
+
+const { title, text, label = `Cotiza por WhatsApp · ${site.telephoneDisplay}`, message } = Astro.props;
+---
+
+<section class="px-4 pb-20">
+  <div class="mx-auto max-w-6xl rounded-2xl border border-signal/30 bg-gradient-to-br from-raised to-panel p-8 sm:p-12">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">{title}</h2>
+    <p class="mt-4 max-w-2xl text-mist">{text}</p>
+    <a
+      href={whatsappUrl(message)}
+      class="glow-signal mt-6 inline-flex rounded-full bg-signal px-6 py-3 font-semibold text-ink hover:bg-signal-dark"
+    >
+      {label}
+    </a>
+  </div>
+</section>

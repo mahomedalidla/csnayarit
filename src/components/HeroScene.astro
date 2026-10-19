@@ -1,0 +1,13 @@
+<div class="hero-stage relative h-[300px] w-full sm:h-[420px] lg:h-[520px]">
+  <div class="pointer-events-none absolute inset-8 rounded-full bg-signal/15 blur-3xl"></div>
+  <canvas id="hero-gl" class="relative h-full w-full" aria-hidden="true"></canvas>
+</div>
+
+<script>
+  const canvas = document.getElementById('hero-gl');
+  if (canvas instanceof HTMLCanvasElement) {
+    import('../scripts/camera-scene').then(({ initCameraScene }) => {
+      initCameraScene(canvas);
+    });
+  }
+</script>

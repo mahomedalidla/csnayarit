@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import GeoAnswer from '../components/GeoAnswer.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqNode, organizationId, site } from '../config/site';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Mantenimiento DVR/CCTV', path: '/mantenimiento-reparacion-dvr-cctv' },
+];
+
+const rescate: { title: string; text: string; href?: string }[] = [
+  {
+    title: 'Cambiaste de internet y ya no se ven',
+    text: 'Pasas de Telmex, Megacable o Totalplay y la app se queda en negro. Reconectamos el grabador a la red nueva y vuelves a ver las cámaras el mismo día.',
+    href: '/blog/como-solucionar-camaras-desconfiguradas-cambio-modem',
+  },
+  {
+    title: 'Se te olvidó la contraseña',
+    text: 'Desbloqueamos equipos Dahua, Hikvision, Epcom y Saxxon. Cuando el disco lo permite, no se borran las grabaciones viejas.',
+    href: '/blog/como-recuperar-contrasena-dvr-dahua-hikvision',
+  },
+  {
+    title: 'Lentes sucios y conectores oxidados',
+    text: 'Polvo, lluvia y voltaje inestable nublan la imagen. Limpiamos, cambiamos conectores dañados y revisamos la fuente de poder.',
+  },
+  {
+    title: 'El grabador pita o ya no guarda video',
+    text: 'Casi siempre es el disco duro. Lo diagnosticamos y te decimos si se repara o hay que cambiarlo, sin inventarte un sistema nuevo.',
+    href: '/blog/dvr-pita-deja-de-grabar-disco-duro',
+  },
+];
+
+const faqs = [
+  {
+    question: '¿Cambié de compañía de internet y ya no veo las cámaras en el celular?',
+    answer:
+      'Sí, es lo más común. El módem nuevo “cambia la dirección” de la red (DHCP) y el grabador se queda hablando con el internet viejo. Reconfiguramos DVR/NVR y P2P el mismo día en Tepic y zona conurbada.',
+  },
+  {
+    question: '¿Pueden quitar la contraseña de un DVR Dahua o Hikvision sin borrar el video?',
+    answer:
+      'En la mayoría de los casos sí. Desbloqueamos Dahua, Hikvision, Epcom y Saxxon y, si el disco está sano, conservamos las grabaciones.',
+  },
+];
+---
+
+<BaseLayout
+  title="Reparación y Mantenimiento de Cámaras de Seguridad en Tepic"
+  description="Reparación de cámaras de seguridad en Tepic: mantenimiento CCTV, cámaras desconfiguradas por cambio de módem y reseteo de contraseña DVR Dahua e Hikvision."
+  path="/mantenimiento-reparacion-dvr-cctv"
+  breadcrumbs={breadcrumbs}
+  schema={[
+    faqNode(faqs),
+    {
+      '@type': 'Service',
+      name: 'Reparación y mantenimiento de CCTV y DVR en Tepic',
+      provider: { '@id': organizationId },
+      areaServed: { '@type': 'City', name: 'Tepic' },
+      url: `${site.url}/mantenimiento-reparacion-dvr-cctv`,
+    },
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Urgencias · mismo día en Tepic"
+    heading="¿Tus cámaras ya no se ven en el celular? Lo reparamos"
+    lead="Cambiaste de Telmex, Megacable o Totalplay y se “desaparecieron”. Contraseña olvidada, lente opaco o el aparato que pita: casi siempre se resuelve sin comprar todo de nuevo."
+    secondary="Vamos a tu casa o local. Si el equipo todavía sirve, lo dejamos trabajando."
+    primaryCta={{ label: 'Pedir ayuda por WhatsApp' }}
+    secondaryCta={{
+      href: '/blog/como-solucionar-camaras-desconfiguradas-cambio-modem',
+      label: 'Por qué se desconectaron',
+    }}
+  />
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">Lo que más nos piden</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      {
+        rescate.map((item) => (
+          <article class="wow-card rounded-2xl border border-line bg-panel p-6">
+            <h3 class="font-display text-2xl font-bold">
+              {item.href ? (
+                <a href={item.href} class="hover:text-signal">
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-mist">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaBanner
+    title="Hoy se pueden volver a ver"
+    text="Dinos la marca del grabador (Dahua, Hikvision, Epcom, Saxxon) y si cambiaste de módem. Coordinamos en Tepic, Xalisco o Compostela."
+    message="Hola, mis cámaras se desconfiguraron y necesito mantenimiento CCTV en Tepic."
+  />
+</BaseLayout>

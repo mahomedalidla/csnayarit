@@ -1,0 +1,35 @@
+---
+import { comparisonRows } from '../config/site';
+---
+
+<section class="mx-auto max-w-6xl px-4 py-20">
+  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">La diferencia se nota a los seis meses</p>
+  <h2 class="font-display mt-3 max-w-3xl text-3xl font-bold sm:text-5xl">
+    Un kit barato se ve bien el día que lo instalan. El nuestro sigue grabando.
+  </h2>
+  <p class="mt-4 max-w-2xl text-mist">
+    La mayoría nos llama cuando las cámaras Wi-Fi ya no se ven en el celular. Esto es lo que cambiamos.
+  </p>
+  <div class="wow-card mt-10 overflow-x-auto rounded-2xl border border-line">
+    <table class="min-w-[720px] w-full border-collapse text-left text-sm">
+      <thead class="bg-raised text-xs uppercase tracking-wider text-mist">
+        <tr>
+          <th class="px-5 py-4">Qué importa</th>
+          <th class="px-5 py-4">Lo que suele fallar</th>
+          <th class="bg-signal/10 px-5 py-4 text-signal">Cómo lo hacemos nosotros</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          comparisonRows.map((row) => (
+            <tr class="border-t border-line align-top">
+              <th class="px-5 py-5 font-semibold text-paper">{row.aspect}</th>
+              <td class="px-5 py-5 text-mist">{row.informal}</td>
+              <td class="bg-signal/5 px-5 py-5 text-paper">{row.standard}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideCta from '../../components/GuideCta.astro';
+import GeoAnswer from '../../components/GeoAnswer.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleNode, faqNode } from '../../config/site';
+
+const path = '/blog/dvr-pita-deja-de-grabar-disco-duro';
+const wa =
+  'Hola, el grabador de cámaras pita o ya no graba. Necesito diagnóstico del disco a domicilio.';
+
+const breadcrumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/blog' },
+  { name: 'El grabador pita', path },
+];
+
+const faqs = [
+  {
+    question: '¿Por qué pita el grabador de cámaras o deja de guardar video?',
+    answer:
+      'Casi siempre es el disco duro (HDD). El aparato avisa cuando el disco está lleno, dañado o ya no responde. En Tepic lo diagnosticamos a domicilio: te decimos si se cambia el disco o el grabador todavía sirve. Se cobra la visita y, si aplica, el disco. Cotizamos por WhatsApp.',
+  },
+  {
+    question: '¿Se puede recuperar el video si el disco ya no graba?',
+    answer:
+      'A veces sí, si no lo formateas. No le des a “inicializar disco”. Apágalo y mándanos un video del pitido. Primero vemos si se puede leer lo grabado; después te decimos si hay que cambiar el disco.',
+  },
+];
+
+const pasos = [
+  {
+    name: 'Eso que pita casi nunca son las cámaras',
+    text: 'Un pitido corto cada poco suele ser aviso del disco. En el menú puede decir HDD o “no hay disco”. Si se ve en vivo pero al rebobinar faltan días, el problema es el almacenamiento, no los lentes.',
+  },
+  {
+    name: 'No formatees ni abras la caja',
+    text: '“Inicializar disco” borra lo grabado. Abrir el aparato sin saber cómo se sujeta el disco puede dañar más. Si te importa un incidente de los últimos días, detente ahí.',
+  },
+  {
+    name: 'Mándanos un video corto por WhatsApp',
+    text: 'El pitido, la pantalla y la marca del grabador. Con eso te decimos si parece disco, corriente o el aparato, y te cotizamos la visita antes de salir.',
+  },
+  {
+    name: 'Diagnóstico en casa: pagas lo que sí hace falta',
+    text: 'En Tepic, Xalisco y Compostela vemos el disco (si responde, si está lleno, si hay que poner uno de videovigilancia). No te vendemos un sistema completo si con cambiar el disco queda.',
+  },
+];
+
+const howTo = {
+  '@type': 'HowTo',
+  name: 'Qué hacer si el grabador de cámaras pita o deja de grabar en Tepic',
+  description:
+    'No formatees el disco. Manda un video por WhatsApp y un técnico diagnostica el HDD a domicilio en Nayarit.',
+  inLanguage: 'es-MX',
+  step: pasos.map((paso, index) => ({
+    '@type': 'HowToStep',
+    position: index + 1,
+    name: paso.name,
+    text: paso.text,
+  })),
+};
+---
+
+<BaseLayout
+  title="El grabador de cámaras pita o ya no graba: diagnóstico en Tepic"
+  description="DVR o NVR que pita o deja de guardar video. Te explicamos por qué es el disco, qué no toques y vamos a diagnosticarlo a domicilio en Tepic."
+  path={path}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    articleNode({
+      headline: 'El grabador pita o ya no guarda video: vamos a ver el disco',
+      description:
+        'Diagnóstico a domicilio de disco duro en DVR/NVR. Visita técnica en Tepic, Xalisco y Compostela.',
+      path,
+      datePublished: '2026-10-19',
+    }),
+    howTo,
+    faqNode(faqs),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Visita técnica · Tepic</p>
+    <h1 class="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+      El grabador de cámaras pita o ya no graba en Tepic
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-mist">
+      El aparato suena, sale un recuadro de disco o al buscar ayer no hay nada. Las cámaras suelen estar bien: falló donde se guarda el video. Eso no se adivina desde el celular. Se ve en casa y se cobra como diagnóstico.
+    </p>
+
+    <GuideCta
+      text="Mándanos un video del pitido o de la pantalla. Te decimos si es el disco y cuánto sale ir a dejarlo grabando."
+      message={wa}
+      label="Pedir diagnóstico"
+    />
+
+    <h2 class="font-display mt-12 text-3xl font-bold">Qué pasó, en simple</h2>
+    <p class="mt-4 leading-relaxed text-mist">
+      El grabador (DVR/NVR) escribe en el disco todo el día. Cuando el disco se llena mal, se calienta o empieza a fallar, el equipo pita para que te enteres. Formatear “para ver si se quita” borra justo lo que a veces más necesitas. Un disco de escritorio barato aguanta menos que uno de videovigilancia: por eso a los meses empieza a quejarse.
+    </p>
+
+    <ol class="mt-10 space-y-8">
+      {
+        pasos.map((paso, index) => (
+          <li class="rounded-2xl border border-line bg-panel p-6">
+            <p class="text-xs uppercase tracking-wider text-hud">Paso {index + 1}</p>
+            <h2 class="font-display mt-2 text-2xl font-bold">{paso.name}</h2>
+            <p class="mt-3 leading-relaxed text-mist">{paso.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </article>
+
+  <GeoAnswer question={faqs[0].question} answer={faqs[0].answer} />
+  <Faq items={faqs} />
+
+  <CtaBanner
+    title="Que pita no quiere decir que hay que comprar todo de nuevo"
+    text="Vamos, vemos el disco y te cotizamos solo lo que falta. Tepic, Xalisco o Compostela."
+    label="WhatsApp para el diagnóstico"
+    message={wa}
+  />
+</BaseLayout>
