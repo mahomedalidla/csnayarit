@@ -33,6 +33,30 @@ const adsScript = `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18529724524');`;
+const whatsappConversionScript = `function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18529724524/nlOGCLDohaUdEOzQ1INF',
+      'value': 1.0,
+      'currency': 'MXN',
+      'event_callback': callback
+  });
+  return false;
+}
+document.addEventListener('click', function (event) {
+  if (event.defaultPrevented || event.button !== 0) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  var anchor = event.target && event.target.closest ? event.target.closest('a') : null;
+  if (!anchor) return;
+  var href = anchor.href || '';
+  if (!/^https?:\\/\\/(?:wa\\.me|api\\.whatsapp\\.com|web\\.whatsapp\\.com)\\//i.test(href)) return;
+  event.preventDefault();
+  gtag_report_conversion(href);
+});`;
 const url = canonical(path);
 const graph: JsonLdNode[] = [
   organizationNode(),
@@ -98,5 +122,6 @@ const graph: JsonLdNode[] = [
     </main>
     <Footer />
     <WhatsAppFloat />
+    <script is:inline set:html={whatsappConversionScript}></script>
   </body>
 </html>
