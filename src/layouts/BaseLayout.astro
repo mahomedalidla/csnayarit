@@ -24,6 +24,15 @@ interface Props {
 }
 
 const { title, description, path, breadcrumbs = [], schema = [], noindex = false } = Astro.props;
+const gtmScript = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N2ZL5TQP');`;
+const adsScript = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18529724524');`;
 const url = canonical(path);
 const graph: JsonLdNode[] = [
   organizationNode(),
@@ -38,16 +47,13 @@ const graph: JsonLdNode[] = [
 <html lang="es-MX">
   <head>
     <meta charset="utf-8" />
+    <!-- Google Tag Manager -->
+    <script is:inline set:html={gtmScript}></script>
+    <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Google tag (gtag.js) — Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18529724524" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-18529724524');
-    </script>
+    <script is:inline set:html={adsScript}></script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={url} />
@@ -76,6 +82,10 @@ const graph: JsonLdNode[] = [
     <JsonLd graph={graph} />
   </head>
   <body class="min-h-screen bg-ink text-paper antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N2ZL5TQP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a
       href="#contenido"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-signal focus:px-3 focus:py-2 focus:text-ink"
