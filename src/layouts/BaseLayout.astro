@@ -39,6 +39,15 @@ const graph: JsonLdNode[] = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google tag (gtag.js) — Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18529724524" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18529724524');
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={url} />
